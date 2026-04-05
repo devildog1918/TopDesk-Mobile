@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Field Tech App</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f172a"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+    }
+    .app {
+      max-width: 420px;
+      margin: auto;
+      background: white;
+      min-height: 100vh;
+    }
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .content {
+      padding: 15px;
+    }
+    .ticket {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #0f172a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+<div class="app">
+  <header>Field Tech App</header>
+
+  <div class="content" id="app"></div>
+</div>
+
+<script>
+let tickets = [
+  {
+    id: "I2604-01234",
+    user: "John Smith",
+    campus: "MRHS",
+    issue: "Projector not working",
+    status: "In Progress",
+    notes: []
+  }
+];
+
+let current = "list";
+let selected = null;
+
+function render() {
+  const app = document.getElementById("app");
+
+  if (current === "list") {
+    app.innerHTML = tickets.map(t => `
+      <div class="ticket" onclick="openTicket('${t.id}')">
+        <b>${t.id}</b><br>
+        ${t.user}<br>
+        ${t.campus}<br>
+        ${t.issue}<br>
+        <small>${t.status}</small>
+      </div>
+    `).join("");
+  }
+
+  if (current === "detail") {
+    const t = selected;
+    app.innerHTML = `
+      <h3>${t.id}</h3>
+      ${t.user}<br>
+      ${t.campus}<br>
+      ${t.issue}<br><br>
+
+      <button class="btn" onclick="addNote('On Site')">On Site</button>
+      <button class="btn" onclick="addNote('Contacted')">Contacted</button>
+      <button class="btn" onclick="addNote('Resolved')">Resolved</button>
+      <button class="btn" onclick="goBack()">Back</button>
+    `;
+  }
+}
+
+function openTicket(id) {
+  selected = tickets.find(t => t.id === id);
+  current = "detail";
+  render();
+}
+
+function goBack() {
+  current = "list";
+  render();
+}
+
+function addNote(type) {
+  let text = "";
+
+  if (type === "On Site") text = "Technician arrived on site.";
+  if (type === "Contacted") text = "User contacted.";
+  if (type === "Resolved") {
+    text = "Issue resolved.";
+    selected.status = "Resolved";
+  }
+
+  selected.notes.push(text);
+  alert("Update saved");
+}
+
+render();
+
+// Register service worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+
+// Install prompt
+let deferredPrompt;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log("Install ready");
+});
+</script>
+</body>
+</html>
