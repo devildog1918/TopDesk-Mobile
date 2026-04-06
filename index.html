@@ -51,7 +51,7 @@
       background: #fff;
       box-shadow: var(--shadow);
       position: relative;
-       overflow-x: hidden;  /* keeps page clean */
+       overflow-x: hidden;
     }
 
     .topbar{
@@ -100,7 +100,7 @@
 
     .screen {
   padding: 14px 14px 92px;
-  overflow-x: visible;   /* 👈 ADD THIS */
+  overflow-x: visible;
 }
 
     .search-box, .field-input, .field-select, .field-textarea{
@@ -118,26 +118,39 @@
       box-shadow: 0 0 0 3px rgba(148,163,184,.18);
     }
 
-  .chips {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  padding: 2px 1px 8px;
-  margin-top: 12px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
+  .chips-wrap {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-top: 12px;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
 
-.chips::-webkit-scrollbar {
-  display: none;
-}
+    .chips-wrap::-webkit-scrollbar {
+      display: none;
+    }
 
-.chip {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
+    .chips-track {
+      display: inline-flex;
+      gap: 8px;
+      width: max-content;
+      min-width: 100%;
+      padding: 2px 1px 2px;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
 
     .chip.active{
       background: var(--brand);
@@ -821,10 +834,12 @@
 
       let body = `
         <input class="search-box" placeholder="Search ticket, user, campus, room" value="${escapeHtml(state.search)}" oninput="updateSearch(this.value)">
-        <div class="chips">
-          ${filters.map(filter => `
-            <button class="chip ${state.activeFilter === filter ? "active" : ""}" onclick="setFilter('${filter.replace(/'/g,"\\'")}')">${filter}</button>
-          `).join("")}
+        <div class="chips-wrap">
+          <div class="chips-track">
+            ${filters.map(filter => `
+              <button class="chip ${state.activeFilter === filter ? "active" : ""}" onclick="setFilter('${filter.replace(/'/g,"\\'")}')">${filter}</button>
+            `).join("")}
+          </div>
         </div>
         <div class="toggle-row">
           <button class="toggle-btn ${state.viewMode === "list" ? "active" : ""}" onclick="setViewMode('list')">List</button>
