@@ -1,21 +1,28 @@
 {
-  "name": "Field Tech App",
-  "short_name": "FieldTech",
-  "start_url": "./",
+  "name": "RP Ticket Assistant",
+  "short_name": "RP Assistant",
+  "description": "Personal workflow and status tool for managing tickets across multiple categories.",
+  "id": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "background_color": "#0b1220",
   "theme_color": "#0f172a",
+  "categories": ["productivity", "utilities", "business"],
+  "lang": "en-US",
   "icons": [
     {
       "src": "./icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "./icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
