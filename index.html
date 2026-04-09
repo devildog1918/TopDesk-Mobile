@@ -10,252 +10,125 @@
     :root {
       --bg: #0b1220;
       --panel: #111827;
-      --panel-2: #1f2937;
-      --panel-3: #0f172a;
-      --line: #334155;
+      --panel2: #0f172a;
+      --line: rgba(148,163,184,.16);
       --text: #e5e7eb;
       --muted: #94a3b8;
       --accent: #38bdf8;
-      --accent-2: #22c55e;
+      --good: #22c55e;
       --warn: #f59e0b;
-      --danger: #ef4444;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
       --radius: 16px;
-      --radius-sm: 12px;
-      --header-h: 64px;
-      --nav-h: 78px;
-      --max-w: 980px;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+      --nav-h: 76px;
+      --max: 980px;
       --font: Inter, Roboto, Arial, sans-serif;
     }
-
     * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      min-height: 100%;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      padding: 0;
-    }
-
-    .app {
-      width: 100%;
-      max-width: var(--max-w);
-      min-height: 100vh;
-      background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
-      position: relative;
-    }
-
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
+    body { display: flex; justify-content: center; }
+    .app { width: 100%; max-width: var(--max); min-height: 100vh; background: linear-gradient(180deg,#0b1220 0%,#0f172a 100%); }
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      height: var(--header-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      background: rgba(11, 18, 32, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+      position: sticky; top: 0; z-index: 20; height: 64px; display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: rgba(11,18,32,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
     }
-
-    .brand-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand {
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .subbrand {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .topbar-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .icon-btn, .btn {
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      background: var(--panel);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 10px 12px;
-      cursor: pointer;
-      font: inherit;
-      transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
-    }
-
-    .icon-btn:active, .btn:active { transform: scale(0.98); }
-    .btn.primary { background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.28); color: #d8f3ff; }
-    .btn.good { background: rgba(34, 197, 94, 0.14); border-color: rgba(34, 197, 94, 0.28); color: #dcfce7; }
-    .btn.warn { background: rgba(245, 158, 11, 0.14); border-color: rgba(245, 158, 11, 0.28); color: #fef3c7; }
-    .btn.danger { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.28); color: #fee2e2; }
-    .btn.ghost { background: transparent; }
-
-    .screen { display: none; padding: 16px; padding-bottom: calc(var(--nav-h) + 28px); }
+    .brand { font-weight: 800; font-size: 1.05rem; }
+    .subbrand { color: var(--muted); font-size: .78rem; }
+    .top-actions { display: flex; gap: 8px; }
+    .screen { display: none; padding: 16px; padding-bottom: calc(var(--nav-h) + 26px); }
     .screen.active { display: block; }
     .section { margin-bottom: 18px; }
-    .section-title { font-size: 0.88rem; color: var(--muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
-
+    .section-title { margin: 0 0 10px; color: var(--muted); font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; }
     .card {
-      background: rgba(17, 24, 39, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 14px;
+      background: rgba(17,24,39,.96); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow);
     }
-
-    .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .stat { background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 0.95)); border: 1px solid rgba(148, 163, 184, 0.14); border-radius: var(--radius-sm); padding: 12px; }
-    .stat-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 6px; }
-    .stat-value { font-size: 1.4rem; font-weight: 800; }
-
-    .filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-    .filters::-webkit-scrollbar { display: none; }
-    .chip { white-space: nowrap; border: 1px solid rgba(148, 163, 184, 0.16); background: rgba(15, 23, 42, 0.9); color: var(--text); padding: 10px 12px; border-radius: 999px; cursor: pointer; font-size: 0.9rem; }
-    .chip.active { border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.16); color: #d8f3ff; }
-
-    .search-wrap { display: flex; gap: 8px; }
-    .input, .textarea, .select { width: 100%; border-radius: 12px; border: 1px solid rgba(148, 163, 184, 0.18); background: rgba(15, 23, 42, 0.92); color: var(--text); padding: 12px 13px; font: inherit; }
-    .textarea { min-height: 110px; resize: vertical; }
     .stack { display: flex; flex-direction: column; gap: 10px; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .ticket-list { display: flex; flex-direction: column; gap: 10px; }
-
-    .ticket { border: 1px solid rgba(148, 163, 184, 0.14); background: rgba(15, 23, 42, 0.96); border-radius: 16px; padding: 14px; cursor: pointer; }
-    .ticket-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-bottom: 10px; }
-    .ticket-id { font-size: 0.76rem; color: var(--muted); margin-bottom: 4px; }
-    .ticket-title { font-size: 1rem; font-weight: 800; line-height: 1.25; }
-    .ticket-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-    .pill { padding: 6px 9px; border-radius: 999px; font-size: 0.74rem; border: 1px solid rgba(148, 163, 184, 0.14); background: rgba(31, 41, 55, 0.8); color: #dbeafe; }
-    .tiny { font-size: 0.82rem; color: var(--muted); }
-
-    .detail-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-bottom: 12px; }
-    .detail-title { font-size: 1.1rem; font-weight: 800; }
-    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .info-item { background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(148, 163, 184, 0.1); border-radius: 12px; padding: 10px; }
-    .info-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-    .info-value { font-size: 0.95rem; line-height: 1.3; word-break: break-word; }
-
-    .actions-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .action-btn { text-align: left; min-height: 64px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
-    .action-title { font-weight: 700; font-size: 0.93rem; }
-    .action-sub { font-size: 0.78rem; color: var(--muted); }
-
+    .stats { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .stat { background: rgba(15,23,42,.85); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+    .stat-label { color: var(--muted); font-size: .78rem; margin-bottom: 6px; }
+    .stat-value { font-size: 1.35rem; font-weight: 800; }
+    .filters { display: flex; gap: 8px; overflow-x: auto; }
+    .filters::-webkit-scrollbar { display: none; }
+    .chip, .btn, .nav-btn {
+      border: 1px solid var(--line); background: rgba(15,23,42,.85); color: var(--text); border-radius: 12px; padding: 10px 12px; cursor: pointer; font: inherit;
+    }
+    .chip.active, .btn.primary, .nav-btn.active { background: rgba(56,189,248,.16); border-color: rgba(56,189,248,.35); color: #d8f3ff; }
+    .btn.good { background: rgba(34,197,94,.14); border-color: rgba(34,197,94,.3); color: #dcfce7; }
+    .btn.warn { background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.3); color: #fef3c7; }
+    .input, .textarea, .select {
+      width: 100%; border: 1px solid var(--line); background: rgba(15,23,42,.92); color: var(--text); border-radius: 12px; padding: 12px 13px; font: inherit;
+    }
+    .textarea { min-height: 110px; resize: vertical; }
+    .tickets { display: flex; flex-direction: column; gap: 10px; }
+    .ticket { border: 1px solid var(--line); background: rgba(15,23,42,.94); border-radius: 16px; padding: 14px; cursor: pointer; }
+    .ticket-top { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+    .ticket-id { color: var(--muted); font-size: .76rem; margin-bottom: 4px; }
+    .ticket-title { font-weight: 800; }
+    .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .pill { border: 1px solid var(--line); background: rgba(31,41,55,.85); border-radius: 999px; padding: 6px 9px; font-size: .74rem; }
+    .tiny { color: var(--muted); font-size: .82rem; }
+    .info-grid, .actions-grid, .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .info { background: rgba(15,23,42,.72); border: 1px solid rgba(148,163,184,.1); border-radius: 12px; padding: 10px; }
+    .info-label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
     .timeline { display: flex; flex-wrap: wrap; gap: 8px; }
-    .timeline-step { padding: 8px 10px; border-radius: 999px; background: rgba(15, 23, 42, 0.84); border: 1px solid rgba(148, 163, 184, 0.14); font-size: 0.8rem; color: var(--muted); }
-    .timeline-step.active { background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.28); color: #d8f3ff; }
-
+    .step { padding: 8px 10px; border-radius: 999px; background: rgba(15,23,42,.84); border: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    .step.active { background: rgba(56,189,248,.16); border-color: rgba(56,189,248,.28); color: #d8f3ff; }
     .checklist { display: flex; flex-direction: column; gap: 10px; }
-    .check-item { display: flex; gap: 10px; align-items: start; background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(148, 163, 184, 0.12); border-radius: 12px; padding: 10px; }
-    .check-item input { margin-top: 3px; transform: scale(1.15); }
-    .blurb-box { background: rgba(15, 23, 42, 0.88); border: 1px solid rgba(148, 163, 184, 0.16); border-radius: 14px; padding: 12px; white-space: pre-wrap; line-height: 1.45; font-size: 0.94rem; }
-    .notes-list { display: flex; flex-direction: column; gap: 8px; }
-    .note { background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(148, 163, 184, 0.12); border-radius: 12px; padding: 10px; }
-    .note-meta { font-size: 0.72rem; color: var(--muted); margin-bottom: 5px; }
-
-    .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .quick-btn { min-height: 88px; font-size: 1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2; }
-    .empty-state { text-align: center; color: var(--muted); padding: 24px 10px; border: 1px dashed rgba(148, 163, 184, 0.2); border-radius: 16px; }
-
-    .bottom-nav { position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; width: 100%; max-width: var(--max-w); z-index: 25; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(11,18,32,0) 0%, rgba(11,18,32,0.95) 28%, rgba(11,18,32,0.98) 100%); }
-    .bottom-nav-inner { background: rgba(17, 24, 39, 0.94); border: 1px solid rgba(148, 163, 184, 0.14); border-radius: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 8px; box-shadow: var(--shadow); backdrop-filter: blur(8px); }
-    .nav-btn { border: 0; background: transparent; color: var(--muted); font: inherit; padding: 10px 6px; border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center; }
-    .nav-btn.active { background: rgba(56, 189, 248, 0.14); color: #d8f3ff; }
-    .nav-ico { font-size: 1.1rem; }
-    .nav-label { font-size: 0.72rem; }
-
-    .toast { position: fixed; top: 78px; left: 50%; transform: translateX(-50%) translateY(-12px); background: rgba(17, 24, 39, 0.96); border: 1px solid rgba(56, 189, 248, 0.26); color: #d8f3ff; padding: 12px 14px; border-radius: 12px; opacity: 0; pointer-events: none; transition: 0.18s ease; z-index: 50; box-shadow: var(--shadow); max-width: calc(100% - 24px); text-align: center; }
+    .check { display: flex; gap: 10px; align-items: start; border: 1px solid rgba(148,163,184,.12); background: rgba(15,23,42,.72); border-radius: 12px; padding: 10px; }
+    .blurb { white-space: pre-wrap; line-height: 1.45; background: rgba(15,23,42,.88); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+    .notes { display: flex; flex-direction: column; gap: 8px; }
+    .note { background: rgba(15,23,42,.72); border: 1px solid rgba(148,163,184,.12); border-radius: 12px; padding: 10px; }
+    .empty { text-align: center; color: var(--muted); padding: 24px 10px; border: 1px dashed rgba(148,163,184,.2); border-radius: 16px; }
+    .bottom-nav {
+      position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; width: 100%; max-width: var(--max); z-index: 25;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(180deg,rgba(11,18,32,0) 0%,rgba(11,18,32,.95) 28%,rgba(11,18,32,.98) 100%);
+    }
+    .bottom-nav-inner { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; background: rgba(17,24,39,.94); border: 1px solid var(--line); border-radius: 18px; padding: 8px; box-shadow: var(--shadow); }
+    .nav-btn { background: transparent; border: 0; color: var(--muted); display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center; }
+    .nav-btn.active { color: #d8f3ff; }
+    .toast {
+      position: fixed; top: 78px; left: 50%; transform: translateX(-50%) translateY(-12px); opacity: 0; pointer-events: none; transition: .18s ease;
+      background: rgba(17,24,39,.96); color: #d8f3ff; border: 1px solid rgba(56,189,248,.26); border-radius: 12px; padding: 12px 14px; z-index: 50;
+    }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    @media (min-width: 760px) {
-      .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .quick-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .actions-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 560px) {
-      .row, .info-grid, .actions-grid, .quick-grid { grid-template-columns: 1fr; }
-      .ticket-top, .detail-head { flex-direction: column; }
-    }
+    @media (min-width:760px) { .stats { grid-template-columns: repeat(4,minmax(0,1fr)); } .quick-grid { grid-template-columns: repeat(4,1fr); } }
+    @media (max-width:560px) { .row, .info-grid, .actions-grid, .quick-grid { grid-template-columns: 1fr; } .ticket-top { flex-direction: column; } }
   </style>
 </head>
 <body>
   <div class="app">
     <header class="topbar">
-      <div class="brand-wrap">
+      <div>
         <div class="brand">RP Ticket Assistant</div>
         <div class="subbrand">Personal workflow tool for all ticket categories</div>
       </div>
-      <div class="topbar-actions">
-        <button class="icon-btn" id="resetDemoBtn" title="Reset demo data">Reset</button>
-        <button class="btn primary" id="newTicketBtn">+ Ticket</button>
+      <div class="top-actions">
+        <button class="btn" id="resetDemoBtn" type="button">Reset</button>
+        <button class="btn primary" id="newTicketBtn" type="button">+ Ticket</button>
       </div>
     </header>
 
     <main>
       <section class="screen active" id="screen-dashboard">
-        <div class="section">
-          <p class="section-title">Overview</p>
-          <div class="stats-grid" id="statsGrid"></div>
-        </div>
-        <div class="section">
-          <p class="section-title">Filter by category</p>
-          <div class="filters" id="categoryFilters"></div>
-        </div>
-        <div class="section">
-          <p class="section-title">Find ticket</p>
-          <div class="search-wrap">
-            <input class="input" id="searchInput" type="text" placeholder="Search ID, user, summary, category, campus..." />
-          </div>
-        </div>
-        <div class="section">
-          <p class="section-title">My tickets</p>
-          <div class="ticket-list" id="ticketList"></div>
-        </div>
+        <div class="section"><p class="section-title">Overview</p><div class="stats" id="statsGrid"></div></div>
+        <div class="section"><p class="section-title">Filter by category</p><div class="filters" id="categoryFilters"></div></div>
+        <div class="section"><p class="section-title">Find ticket</p><input class="input" id="searchInput" type="text" placeholder="Search ID, user, summary, category, campus..." /></div>
+        <div class="section"><p class="section-title">My tickets</p><div class="tickets" id="ticketList"></div></div>
       </section>
 
       <section class="screen" id="screen-detail">
         <div class="section">
-          <div class="card">
-            <div class="detail-head">
-              <div>
-                <div class="ticket-id" id="detailTicketId">—</div>
-                <div class="detail-title" id="detailTitle">Select a ticket</div>
-                <div class="tiny" id="detailSubtitle">—</div>
-              </div>
-              <button class="btn ghost" id="backToDashboardBtn">← Back</button>
-            </div>
+          <div class="card stack">
+            <div class="ticket-id" id="detailTicketId">—</div>
+            <div class="ticket-title" id="detailTitle">Select a ticket</div>
+            <div class="tiny" id="detailSubtitle">—</div>
+            <button class="btn" id="backToDashboardBtn" type="button">← Back</button>
             <div class="info-grid" id="detailInfoGrid"></div>
           </div>
         </div>
-        <div class="section">
-          <p class="section-title">Workflow</p>
-          <div class="card"><div class="timeline" id="timeline"></div></div>
-        </div>
-        <div class="section">
-          <p class="section-title">Actions</p>
-          <div class="actions-grid" id="actionsGrid"></div>
-        </div>
-        <div class="section">
-          <p class="section-title">Checklist</p>
-          <div class="card"><div class="checklist" id="checklist"></div></div>
-        </div>
+        <div class="section"><p class="section-title">Workflow</p><div class="card"><div class="timeline" id="timeline"></div></div></div>
+        <div class="section"><p class="section-title">Actions</p><div class="actions-grid" id="actionsGrid"></div></div>
+        <div class="section"><p class="section-title">Checklist</p><div class="card"><div class="checklist" id="checklist"></div></div></div>
         <div class="section">
           <p class="section-title">Blurb</p>
           <div class="card stack">
@@ -267,10 +140,10 @@
               <div><label class="tiny" for="varMtn">MTN / Ref</label><input class="input" id="varMtn" type="text" placeholder="Phone, asset, or reference" /></div>
               <div><label class="tiny" for="varBudget">Budget / Note</label><input class="input" id="varBudget" type="text" placeholder="Budget code or short note" /></div>
             </div>
-            <div class="blurb-box" id="blurbPreview">No blurb available.</div>
+            <div class="blurb" id="blurbPreview">No blurb available.</div>
             <div class="row">
-              <button class="btn primary" id="copyBlurbBtn">Copy Blurb</button>
-              <button class="btn" id="addBlurbAsNoteBtn">Add Blurb to Notes</button>
+              <button class="btn primary" id="copyBlurbBtn" type="button">Copy Blurb</button>
+              <button class="btn" id="addBlurbAsNoteBtn" type="button">Add Blurb to Notes</button>
             </div>
           </div>
         </div>
@@ -279,38 +152,25 @@
           <div class="card stack">
             <textarea class="textarea" id="noteInput" placeholder="Add a note, reminder, status update, or call summary..."></textarea>
             <div class="row">
-              <button class="btn primary" id="saveNoteBtn">Save Note</button>
-              <button class="btn" id="clearNoteBtn">Clear</button>
+              <button class="btn primary" id="saveNoteBtn" type="button">Save Note</button>
+              <button class="btn" id="clearNoteBtn" type="button">Clear</button>
             </div>
-            <div class="notes-list" id="notesList"></div>
+            <div class="notes" id="notesList"></div>
           </div>
         </div>
       </section>
 
       <section class="screen" id="screen-quick">
-        <div class="section">
-          <p class="section-title">Quick actions</p>
+        <div class="section"><p class="section-title">Quick actions</p>
           <div class="quick-grid">
-            <button class="btn primary quick-btn quick-action" data-step="Order Submitted">📦 Order Submitted</button>
-            <button class="btn good quick-btn quick-action" data-step="Received">🚚 Item Received</button>
-            <button class="btn warn quick-btn quick-action" data-step="Ready for Pickup / Interoffice">📅 Ready / Schedule</button>
-            <button class="btn good quick-btn quick-action" data-step="Completed">✅ Completed</button>
+            <button class="btn primary quick-action" type="button" data-step="Order Submitted">📦 Order Submitted</button>
+            <button class="btn good quick-action" type="button" data-step="Received">🚚 Item Received</button>
+            <button class="btn warn quick-action" type="button" data-step="Ready for Pickup / Interoffice">📅 Ready / Schedule</button>
+            <button class="btn good quick-action" type="button" data-step="Completed">✅ Completed</button>
           </div>
         </div>
-        <div class="section">
-          <p class="section-title">Apply to selected ticket</p>
-          <div class="card stack">
-            <select class="select" id="quickTicketSelect"></select>
-            <div class="tiny">Pick a ticket, then use the big buttons above.</div>
-          </div>
-        </div>
-        <div class="section">
-          <p class="section-title">Quick search</p>
-          <div class="card stack">
-            <input class="input" id="quickSearchInput" type="text" placeholder="Find and open a ticket fast..." />
-            <div class="ticket-list" id="quickSearchResults"></div>
-          </div>
-        </div>
+        <div class="section"><p class="section-title">Apply to selected ticket</p><div class="card stack"><select class="select" id="quickTicketSelect"></select><div class="tiny">Pick a ticket, then use the big buttons above.</div></div></div>
+        <div class="section"><p class="section-title">Quick search</p><div class="card stack"><input class="input" id="quickSearchInput" type="text" placeholder="Find and open a ticket fast..." /><div class="tickets" id="quickSearchResults"></div></div></div>
       </section>
 
       <section class="screen" id="screen-manage">
@@ -333,43 +193,34 @@
               <div><label class="tiny" for="newAssigned">Assigned To</label><input class="input" id="newAssigned" type="text" placeholder="Tech or group" /></div>
               <div><label class="tiny" for="newRef">Phone / Asset / Ref</label><input class="input" id="newRef" type="text" placeholder="MTN, badge ID, asset, etc." /></div>
             </div>
-            <button class="btn primary" id="createTicketBtn">Create Ticket</button>
+            <button class="btn primary" id="createTicketBtn" type="button">Create Ticket</button>
           </div>
         </div>
 
         <div class="section">
           <p class="section-title">Import real tickets</p>
           <div class="card stack">
-            <div class="tiny">Import from CSV or JSON export. Fastest way to load real tickets without live API access.</div>
+            <div class="tiny">Import from CSV or JSON export.</div>
             <input class="input" id="importFileInput" type="file" accept=".csv,.json" />
             <div class="tiny">Supported CSV headers: id, summary, requestor, category, subcategory, campus, priority, assignedTo, reference, universalStatus, workflowStep, nextAction</div>
             <textarea class="textarea" id="pasteImportInput" placeholder="Or paste JSON array here..."></textarea>
             <div class="row">
-              <button class="btn primary" id="importTicketsBtn">Import Tickets</button>
-              <button class="btn" id="exportTicketsBtn">Export Current Tickets</button>
+              <button class="btn primary" id="importTicketsBtn" type="button">Import Tickets</button>
+              <button class="btn" id="exportTicketsBtn" type="button">Export Current Tickets</button>
             </div>
           </div>
         </div>
 
-        <div class="section">
-          <p class="section-title">About</p>
-          <div class="card">
-            <div class="stack">
-              <div>This version is local-first and stores data in your browser with <strong>localStorage</strong>.</div>
-              <div>You can import real tickets from CSV or JSON. Live TOPdesk sync can be added later if you want API-based syncing.</div>
-              <div>Cellular is preloaded as the first workflow, but the app already supports multiple categories.</div>
-            </div>
-          </div>
-        </div>
+        <div class="section"><p class="section-title">About</p><div class="card stack"><div>This version is local-first and stores data in your browser with <strong>localStorage</strong>.</div><div>You can import real tickets from CSV or JSON.</div></div></div>
       </section>
     </main>
 
     <nav class="bottom-nav">
       <div class="bottom-nav-inner">
-        <button class="nav-btn active" data-screen="dashboard"><span class="nav-ico">🏠</span><span class="nav-label">Dashboard</span></button>
-        <button class="nav-btn" data-screen="detail"><span class="nav-ico">🎫</span><span class="nav-label">Detail</span></button>
-        <button class="nav-btn" data-screen="quick"><span class="nav-ico">⚡</span><span class="nav-label">Quick</span></button>
-        <button class="nav-btn" data-screen="manage"><span class="nav-ico">🛠️</span><span class="nav-label">Manage</span></button>
+        <button class="nav-btn active" type="button" data-screen="dashboard"><span>🏠</span><span>Dashboard</span></button>
+        <button class="nav-btn" type="button" data-screen="detail"><span>🎫</span><span>Detail</span></button>
+        <button class="nav-btn" type="button" data-screen="quick"><span>⚡</span><span>Quick</span></button>
+        <button class="nav-btn" type="button" data-screen="manage"><span>🛠️</span><span>Manage</span></button>
       </div>
     </nav>
 
@@ -377,21 +228,21 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'rp-ticket-assistant-data-v2';
-    const universalStatuses = ['New', 'Active', 'Waiting', 'Scheduled', 'Complete', 'Closed'];
+    const STORAGE_KEY = 'rp-ticket-assistant-data-v3';
+    const universalStatuses = ['New','Active','Waiting','Scheduled','Complete','Closed'];
     const categoryConfig = {
       'Cellular Devices': {
-        steps: ['Request', 'Pending Approval', 'Approved', 'Order Submitted', 'Shipped', 'Received', 'Processing', 'Ready for Pickup / Interoffice', 'Completed'],
+        steps: ['Request','Pending Approval','Approved','Order Submitted','Shipped','Received','Processing','Ready for Pickup / Interoffice','Completed'],
         checklist: {
-          'Request': ['Review request details', 'Confirm line type or device need', 'Verify requester and department'],
-          'Pending Approval': ['Verify approval requirement', 'Confirm any budget or department approval', 'Set follow-up reminder'],
-          'Approved': ['Approval confirmed', 'Validate device choice', 'Prepare order details'],
-          'Order Submitted': ['Order emailed/submitted', 'Budget code captured if needed', 'Stakeholders copied if needed'],
-          'Shipped': ['Tracking available', 'Expected arrival noted', 'Prepare receiving steps'],
-          'Received': ['Device physically received', 'Match item to ticket', 'Check for accessories or case'],
-          'Processing': ['Update software/setup', 'Label device if needed', 'Prepare pickup or delivery'],
-          'Ready for Pickup / Interoffice': ['Notify user or department', 'Confirm pickup/interoffice method', 'Prepare sign-out/invoice if needed'],
-          'Completed': ['Old device received if required', 'Final note added', 'Ticket ready to close']
+          'Request': ['Review request details','Confirm line type or device need','Verify requester and department'],
+          'Pending Approval': ['Verify approval requirement','Confirm any budget or department approval','Set follow-up reminder'],
+          'Approved': ['Approval confirmed','Validate device choice','Prepare order details'],
+          'Order Submitted': ['Order emailed/submitted','Budget code captured if needed','Stakeholders copied if needed'],
+          'Shipped': ['Tracking available','Expected arrival noted','Prepare receiving steps'],
+          'Received': ['Device physically received','Match item to ticket','Check for accessories or case'],
+          'Processing': ['Update software/setup','Label device if needed','Prepare pickup or delivery'],
+          'Ready for Pickup / Interoffice': ['Notify user or department','Confirm pickup/interoffice method','Prepare sign-out/invoice if needed'],
+          'Completed': ['Old device received if required','Final note added','Ticket ready to close']
         },
         blurbs: {
           'Request': 'Request received for [DEVICE]. Initial review is in progress. Reference: [MTN].',
@@ -406,13 +257,13 @@
         }
       },
       'ID Badges': {
-        steps: ['Request', 'Photo / Verification', 'Printed', 'Ready for Pickup', 'Completed'],
+        steps: ['Request','Photo / Verification','Printed','Ready for Pickup','Completed'],
         checklist: {
-          'Request': ['Verify badge request details', 'Confirm employee/student info'],
-          'Photo / Verification': ['Capture or verify photo', 'Validate required identity details'],
-          'Printed': ['Badge printed', 'Print quality checked'],
-          'Ready for Pickup': ['Notify user', 'Prepare pickup/sign-out'],
-          'Completed': ['Badge delivered or picked up', 'Final note added']
+          'Request': ['Verify badge request details','Confirm employee/student info'],
+          'Photo / Verification': ['Capture or verify photo','Validate required identity details'],
+          'Printed': ['Badge printed','Print quality checked'],
+          'Ready for Pickup': ['Notify user','Prepare pickup/sign-out'],
+          'Completed': ['Badge delivered or picked up','Final note added']
         },
         blurbs: {
           'Request': 'Badge request received and under review.',
@@ -423,13 +274,13 @@
         }
       },
       'SoftDocs': {
-        steps: ['Request', 'Needs Clarification', 'Assigned', 'Testing', 'Completed'],
+        steps: ['Request','Needs Clarification','Assigned','Testing','Completed'],
         checklist: {
-          'Request': ['Review issue summary', 'Confirm requester details'],
-          'Needs Clarification': ['Identify missing details', 'Contact requester'],
-          'Assigned': ['Assigned to correct specialist', 'Set next follow-up'],
-          'Testing': ['Validate issue or fix', 'Document results'],
-          'Completed': ['User informed', 'Final note entered']
+          'Request': ['Review issue summary','Confirm requester details'],
+          'Needs Clarification': ['Identify missing details','Contact requester'],
+          'Assigned': ['Assigned to correct specialist','Set next follow-up'],
+          'Testing': ['Validate issue or fix','Document results'],
+          'Completed': ['User informed','Final note entered']
         },
         blurbs: {
           'Request': 'SoftDocs request received and initial review is underway.',
@@ -440,14 +291,14 @@
         }
       },
       'General Support': {
-        steps: ['Request', 'In Progress', 'Waiting on User', 'Scheduled', 'Resolved', 'Closed'],
+        steps: ['Request','In Progress','Waiting on User','Scheduled','Resolved','Closed'],
         checklist: {
-          'Request': ['Review issue details', 'Confirm scope and urgency'],
-          'In Progress': ['Troubleshooting started', 'Document work performed'],
-          'Waiting on User': ['User contacted', 'Waiting for reply or action'],
-          'Scheduled': ['Appointment or visit scheduled', 'Time confirmed'],
-          'Resolved': ['Issue resolved', 'User informed'],
-          'Closed': ['Closure documented', 'No further action required']
+          'Request': ['Review issue details','Confirm scope and urgency'],
+          'In Progress': ['Troubleshooting started','Document work performed'],
+          'Waiting on User': ['User contacted','Waiting for reply or action'],
+          'Scheduled': ['Appointment or visit scheduled','Time confirmed'],
+          'Resolved': ['Issue resolved','User informed'],
+          'Closed': ['Closure documented','No further action required']
         },
         blurbs: {
           'Request': 'General support request received and under review.',
@@ -460,44 +311,82 @@
       }
     };
 
-    function isoNow(offsetHours = 0) { return new Date(Date.now() + offsetHours * 60 * 60 * 1000).toISOString(); }
-
     const demoData = {
       selectedTicketId: 'RP-1001',
       activeCategoryFilter: 'All',
       tickets: [
-        { id: 'RP-1001', summary: 'iPhone upgrade for transportation admin', requestor: 'Tina Alvarez', category: 'Cellular Devices', subcategory: 'Upgrade', campus: 'ESC', priority: 'Normal', assignedTo: 'Rob', reference: '832-555-0144', universalStatus: 'Active', workflowStep: 'Order Submitted', nextAction: 'Watch for shipment and update ticket on receipt', updatedAt: isoNow(), notes: [{ at: isoNow(-1), text: 'Upgrade approved and order prepared.' }, { at: isoNow(-0.5), text: 'Order submitted to vendor.' }], checklistState: { 'Order Submitted': [true, true, false] } },
-        { id: 'RP-1002', summary: 'Staff badge replacement', requestor: 'Sandra King', category: 'ID Badges', subcategory: 'Replacement', campus: 'Morton Ranch HS', priority: 'High', assignedTo: 'Rob', reference: 'Badge-2841', universalStatus: 'Scheduled', workflowStep: 'Ready for Pickup', nextAction: 'Notify user and complete pickup', updatedAt: isoNow(-2), notes: [{ at: isoNow(-2), text: 'Badge printed and awaiting pickup.' }], checklistState: {} },
-        { id: 'RP-1003', summary: 'SoftDocs form not loading for enrollment docs', requestor: 'Patricia Gomez', category: 'SoftDocs', subcategory: 'Content Issue', campus: 'Education Support Complex', priority: 'Normal', assignedTo: 'Applications Team', reference: 'Form access issue', universalStatus: 'Waiting', workflowStep: 'Needs Clarification', nextAction: 'Get exact form name and screenshots', updatedAt: isoNow(-3), notes: [{ at: isoNow(-3), text: 'Requested additional details from user.' }], checklistState: {} },
-        { id: 'RP-1004', summary: 'Teacher laptop not connecting to projector', requestor: 'James Butler', category: 'General Support', subcategory: 'Classroom Support', campus: 'Cinco Ranch JH', priority: 'Normal', assignedTo: 'Field Tech', reference: 'Room 214', universalStatus: 'Active', workflowStep: 'In Progress', nextAction: 'Visit room and test cable path', updatedAt: isoNow(-4), notes: [], checklistState: {} }
+        { id: 'RP-1001', summary: 'iPhone upgrade for transportation admin', requestor: 'Tina Alvarez', category: 'Cellular Devices', subcategory: 'Upgrade', campus: 'ESC', priority: 'Normal', assignedTo: 'Rob', reference: '832-555-0144', universalStatus: 'Active', workflowStep: 'Order Submitted', nextAction: 'Watch for shipment and update ticket on receipt', updatedAt: new Date().toISOString(), notes: [{ at: new Date().toISOString(), text: 'Order submitted to vendor.' }], checklistState: { 'Order Submitted': [true, true, false] } },
+        { id: 'RP-1002', summary: 'Staff badge replacement', requestor: 'Sandra King', category: 'ID Badges', subcategory: 'Replacement', campus: 'Morton Ranch HS', priority: 'High', assignedTo: 'Rob', reference: 'Badge-2841', universalStatus: 'Scheduled', workflowStep: 'Ready for Pickup', nextAction: 'Notify user and complete pickup', updatedAt: new Date().toISOString(), notes: [], checklistState: {} },
+        { id: 'RP-1003', summary: 'SoftDocs form not loading', requestor: 'Patricia Gomez', category: 'SoftDocs', subcategory: 'Content Issue', campus: 'ESC', priority: 'Normal', assignedTo: 'Applications Team', reference: 'Form access issue', universalStatus: 'Waiting', workflowStep: 'Needs Clarification', nextAction: 'Get exact form name and screenshots', updatedAt: new Date().toISOString(), notes: [], checklistState: {} },
+        { id: 'RP-1004', summary: 'Projector connection issue', requestor: 'James Butler', category: 'General Support', subcategory: 'Classroom Support', campus: 'Cinco Ranch JH', priority: 'Normal', assignedTo: 'Field Tech', reference: 'Room 214', universalStatus: 'Active', workflowStep: 'In Progress', nextAction: 'Visit room and test cable path', updatedAt: new Date().toISOString(), notes: [], checklistState: {} }
       ]
     };
 
     let appState = loadState();
 
     const els = {
-      screens: { dashboard: document.getElementById('screen-dashboard'), detail: document.getElementById('screen-detail'), quick: document.getElementById('screen-quick'), manage: document.getElementById('screen-manage') },
-      navButtons: [...document.querySelectorAll('.nav-btn')],
-      statsGrid: document.getElementById('statsGrid'), categoryFilters: document.getElementById('categoryFilters'), ticketList: document.getElementById('ticketList'), searchInput: document.getElementById('searchInput'),
-      detailTicketId: document.getElementById('detailTicketId'), detailTitle: document.getElementById('detailTitle'), detailSubtitle: document.getElementById('detailSubtitle'), detailInfoGrid: document.getElementById('detailInfoGrid'), timeline: document.getElementById('timeline'), actionsGrid: document.getElementById('actionsGrid'), checklist: document.getElementById('checklist'),
-      varDate: document.getElementById('varDate'), varDevice: document.getElementById('varDevice'), varMtn: document.getElementById('varMtn'), varBudget: document.getElementById('varBudget'), blurbPreview: document.getElementById('blurbPreview'), copyBlurbBtn: document.getElementById('copyBlurbBtn'), addBlurbAsNoteBtn: document.getElementById('addBlurbAsNoteBtn'),
-      notesList: document.getElementById('notesList'), noteInput: document.getElementById('noteInput'), saveNoteBtn: document.getElementById('saveNoteBtn'), clearNoteBtn: document.getElementById('clearNoteBtn'), backToDashboardBtn: document.getElementById('backToDashboardBtn'),
-      quickTicketSelect: document.getElementById('quickTicketSelect'), quickSearchInput: document.getElementById('quickSearchInput'), quickSearchResults: document.getElementById('quickSearchResults'), toast: document.getElementById('toast'),
-      newTicketBtn: document.getElementById('newTicketBtn'), resetDemoBtn: document.getElementById('resetDemoBtn'), newCategory: document.getElementById('newCategory'), newSummary: document.getElementById('newSummary'), newRequestor: document.getElementById('newRequestor'), newSubcategory: document.getElementById('newSubcategory'), newCampus: document.getElementById('newCampus'), newPriority: document.getElementById('newPriority'), newAssigned: document.getElementById('newAssigned'), newRef: document.getElementById('newRef'), createTicketBtn: document.getElementById('createTicketBtn'),
-      importFileInput: document.getElementById('importFileInput'), pasteImportInput: document.getElementById('pasteImportInput'), importTicketsBtn: document.getElementById('importTicketsBtn'), exportTicketsBtn: document.getElementById('exportTicketsBtn')
+      screens: {
+        dashboard: document.getElementById('screen-dashboard'),
+        detail: document.getElementById('screen-detail'),
+        quick: document.getElementById('screen-quick'),
+        manage: document.getElementById('screen-manage')
+      },
+      navButtons: Array.from(document.querySelectorAll('.nav-btn')),
+      statsGrid: document.getElementById('statsGrid'),
+      categoryFilters: document.getElementById('categoryFilters'),
+      ticketList: document.getElementById('ticketList'),
+      searchInput: document.getElementById('searchInput'),
+      detailTicketId: document.getElementById('detailTicketId'),
+      detailTitle: document.getElementById('detailTitle'),
+      detailSubtitle: document.getElementById('detailSubtitle'),
+      detailInfoGrid: document.getElementById('detailInfoGrid'),
+      timeline: document.getElementById('timeline'),
+      actionsGrid: document.getElementById('actionsGrid'),
+      checklist: document.getElementById('checklist'),
+      varDate: document.getElementById('varDate'),
+      varDevice: document.getElementById('varDevice'),
+      varMtn: document.getElementById('varMtn'),
+      varBudget: document.getElementById('varBudget'),
+      blurbPreview: document.getElementById('blurbPreview'),
+      copyBlurbBtn: document.getElementById('copyBlurbBtn'),
+      addBlurbAsNoteBtn: document.getElementById('addBlurbAsNoteBtn'),
+      notesList: document.getElementById('notesList'),
+      noteInput: document.getElementById('noteInput'),
+      saveNoteBtn: document.getElementById('saveNoteBtn'),
+      clearNoteBtn: document.getElementById('clearNoteBtn'),
+      backToDashboardBtn: document.getElementById('backToDashboardBtn'),
+      quickTicketSelect: document.getElementById('quickTicketSelect'),
+      quickSearchInput: document.getElementById('quickSearchInput'),
+      quickSearchResults: document.getElementById('quickSearchResults'),
+      toast: document.getElementById('toast'),
+      newTicketBtn: document.getElementById('newTicketBtn'),
+      resetDemoBtn: document.getElementById('resetDemoBtn'),
+      newCategory: document.getElementById('newCategory'),
+      newSummary: document.getElementById('newSummary'),
+      newRequestor: document.getElementById('newRequestor'),
+      newSubcategory: document.getElementById('newSubcategory'),
+      newCampus: document.getElementById('newCampus'),
+      newPriority: document.getElementById('newPriority'),
+      newAssigned: document.getElementById('newAssigned'),
+      newRef: document.getElementById('newRef'),
+      createTicketBtn: document.getElementById('createTicketBtn'),
+      importFileInput: document.getElementById('importFileInput'),
+      pasteImportInput: document.getElementById('pasteImportInput'),
+      importTicketsBtn: document.getElementById('importTicketsBtn'),
+      exportTicketsBtn: document.getElementById('exportTicketsBtn')
     };
 
-    initialize();
+    init();
 
-    function initialize() {
+    function init() {
       populateCategorySelects();
       setDefaultVars();
-      wireEvents();
+      bindEvents();
       renderAll();
       showScreen('dashboard');
     }
 
-    function wireEvents() {
+    function bindEvents() {
       els.navButtons.forEach(btn => btn.addEventListener('click', () => showScreen(btn.dataset.screen)));
       els.searchInput.addEventListener('input', renderTicketList);
       els.quickSearchInput.addEventListener('input', renderQuickSearchResults);
@@ -508,7 +397,7 @@
       els.saveNoteBtn.addEventListener('click', saveManualNote);
       els.clearNoteBtn.addEventListener('click', () => { els.noteInput.value = ''; });
       document.querySelectorAll('.quick-action').forEach(btn => btn.addEventListener('click', () => quickApplyStep(btn.dataset.step)));
-      els.quickTicketSelect.addEventListener('change', (e) => { appState.selectedTicketId = e.target.value; persist(); renderDetail(); });
+      els.quickTicketSelect.addEventListener('change', e => { appState.selectedTicketId = e.target.value; persist(); renderDetail(); });
       els.newTicketBtn.addEventListener('click', () => showScreen('manage'));
       els.resetDemoBtn.addEventListener('click', resetDemoData);
       els.createTicketBtn.addEventListener('click', createTicket);
@@ -516,7 +405,19 @@
       els.exportTicketsBtn.addEventListener('click', exportTickets);
     }
 
-    function renderAll() { renderStats(); renderCategoryFilters(); renderTicketList(); renderDetail(); renderQuickSelect(); renderQuickSearchResults(); }
+    function showScreen(name) {
+      Object.keys(els.screens).forEach(key => els.screens[key].classList.toggle('active', key === name));
+      els.navButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.screen === name));
+    }
+
+    function renderAll() {
+      renderStats();
+      renderCategoryFilters();
+      renderTicketList();
+      renderDetail();
+      renderQuickSelect();
+      renderQuickSearchResults();
+    }
 
     function renderStats() {
       const counts = universalStatuses.map(status => ({ status, count: appState.tickets.filter(t => t.universalStatus === status).length }));
@@ -524,60 +425,110 @@
     }
 
     function renderCategoryFilters() {
-      const categories = ['All', ...Object.keys(categoryConfig)];
-      els.categoryFilters.innerHTML = categories.map(cat => `<button class="chip ${appState.activeCategoryFilter === cat ? 'active' : ''}" data-category="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`).join('');
-      els.categoryFilters.querySelectorAll('.chip').forEach(btn => {
-        btn.addEventListener('click', () => {
-          appState.activeCategoryFilter = btn.dataset.category;
-          persist();
-          renderTicketList();
-          renderCategoryFilters();
-        });
-      });
+      const cats = ['All', ...Object.keys(categoryConfig)];
+      els.categoryFilters.innerHTML = cats.map(cat => `<button class="chip ${appState.activeCategoryFilter === cat ? 'active' : ''}" type="button" data-category="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`).join('');
+      els.categoryFilters.querySelectorAll('.chip').forEach(btn => btn.addEventListener('click', () => {
+        appState.activeCategoryFilter = btn.dataset.category;
+        persist();
+        renderCategoryFilters();
+        renderTicketList();
+      }));
     }
 
     function renderTicketList() {
       const term = els.searchInput.value.trim().toLowerCase();
       const filtered = getFilteredTickets(term);
-      if (!filtered.length) { els.ticketList.innerHTML = '<div class="empty-state">No tickets matched your current filter.</div>'; return; }
-      els.ticketList.innerHTML = filtered.map(ticket => `<div class="ticket" data-id="${ticket.id}"><div class="ticket-top"><div><div class="ticket-id">${escapeHtml(ticket.id)}</div><div class="ticket-title">${escapeHtml(ticket.summary)}</div></div><div class="pill status-${cssSafe(ticket.universalStatus)}">${escapeHtml(ticket.universalStatus)}</div></div><div class="ticket-meta"><span class="pill">${escapeHtml(ticket.category)}</span><span class="pill">${escapeHtml(ticket.subcategory)}</span><span class="pill">${escapeHtml(ticket.workflowStep)}</span></div><div class="tiny">${escapeHtml(ticket.requestor)} • ${escapeHtml(ticket.campus)} • ${escapeHtml(ticket.priority)}</div></div>`).join('');
-      els.ticketList.querySelectorAll('.ticket').forEach(card => card.addEventListener('click', () => { appState.selectedTicketId = card.dataset.id; persist(); renderDetail(); renderQuickSelect(); showScreen('detail'); }));
+      if (!filtered.length) {
+        els.ticketList.innerHTML = '<div class="empty">No tickets matched your current filter.</div>';
+        return;
+      }
+      els.ticketList.innerHTML = filtered.map(ticket => `
+        <div class="ticket" data-id="${ticket.id}">
+          <div class="ticket-top">
+            <div><div class="ticket-id">${escapeHtml(ticket.id)}</div><div class="ticket-title">${escapeHtml(ticket.summary)}</div></div>
+            <div class="pill">${escapeHtml(ticket.universalStatus)}</div>
+          </div>
+          <div class="meta">
+            <span class="pill">${escapeHtml(ticket.category)}</span>
+            <span class="pill">${escapeHtml(ticket.subcategory)}</span>
+            <span class="pill">${escapeHtml(ticket.workflowStep)}</span>
+          </div>
+          <div class="tiny">${escapeHtml(ticket.requestor)} • ${escapeHtml(ticket.campus)} • ${escapeHtml(ticket.priority)}</div>
+        </div>
+      `).join('');
+      els.ticketList.querySelectorAll('.ticket').forEach(card => card.addEventListener('click', () => {
+        appState.selectedTicketId = card.dataset.id;
+        persist();
+        renderDetail();
+        renderQuickSelect();
+        showScreen('detail');
+      }));
+    }
+
+    function getSelectedTicket() {
+      return appState.tickets.find(t => t.id === appState.selectedTicketId) || appState.tickets[0] || null;
     }
 
     function renderDetail() {
       const ticket = getSelectedTicket();
-      if (!ticket) { els.detailTicketId.textContent = '—'; els.detailTitle.textContent = 'No ticket selected'; els.detailSubtitle.textContent = 'Select a ticket from the dashboard or quick search.'; els.detailInfoGrid.innerHTML = ''; els.timeline.innerHTML = ''; els.actionsGrid.innerHTML = ''; els.checklist.innerHTML = '<div class="empty-state">No checklist available.</div>'; els.notesList.innerHTML = '<div class="empty-state">No notes yet.</div>'; els.blurbPreview.textContent = 'No blurb available.'; return; }
-      els.detailTicketId.textContent = ticket.id; els.detailTitle.textContent = ticket.summary; els.detailSubtitle.textContent = `${ticket.requestor} • ${ticket.category} • ${ticket.workflowStep}`;
-      els.varDevice.value = els.varDevice.value || ticket.subcategory || ticket.summary; els.varMtn.value = els.varMtn.value || ticket.reference || '';
-      const infoItems = [['Category', ticket.category], ['Subcategory', ticket.subcategory], ['Campus / Location', ticket.campus], ['Priority', ticket.priority], ['Assigned', ticket.assignedTo], ['Universal Status', ticket.universalStatus], ['Next Action', ticket.nextAction || '—'], ['Reference', ticket.reference || '—']];
-      els.detailInfoGrid.innerHTML = infoItems.map(([label, value]) => `<div class="info-item"><div class="info-label">${escapeHtml(label)}</div><div class="info-value">${escapeHtml(value)}</div></div>`).join('');
-      const config = categoryConfig[ticket.category]; const steps = config?.steps || [ticket.workflowStep];
-      els.timeline.innerHTML = steps.map(step => `<div class="timeline-step ${step === ticket.workflowStep ? 'active' : ''}">${escapeHtml(step)}</div>`).join('');
-      const currentIndex = steps.indexOf(ticket.workflowStep); const nextSteps = steps.slice(currentIndex + 1, currentIndex + 4); const actions = [ticket.workflowStep, ...nextSteps].filter((step, idx, arr) => arr.indexOf(step) === idx);
-      els.actionsGrid.innerHTML = actions.map(step => `<button class="btn action-btn ${step === ticket.workflowStep ? 'ghost' : 'primary'}" data-step="${escapeHtml(step)}"><span class="action-title">${step === ticket.workflowStep ? 'Reapply Current Step' : step}</span><span class="action-sub">${step === ticket.workflowStep ? 'Refresh blurb and notes' : 'Update workflow'}</span></button>`).join('');
-      els.actionsGrid.querySelectorAll('.action-btn').forEach(btn => btn.addEventListener('click', () => setWorkflowStep(ticket.id, btn.dataset.step)));
-      renderChecklist(ticket); renderNotes(ticket); renderBlurbPreview();
+      if (!ticket) {
+        els.detailTicketId.textContent = '—';
+        els.detailTitle.textContent = 'No ticket selected';
+        els.detailSubtitle.textContent = 'Select a ticket from the dashboard.';
+        els.detailInfoGrid.innerHTML = '';
+        els.timeline.innerHTML = '';
+        els.actionsGrid.innerHTML = '';
+        els.checklist.innerHTML = '<div class="empty">No checklist available.</div>';
+        els.notesList.innerHTML = '<div class="empty">No notes yet.</div>';
+        els.blurbPreview.textContent = 'No blurb available.';
+        return;
+      }
+      els.detailTicketId.textContent = ticket.id;
+      els.detailTitle.textContent = ticket.summary;
+      els.detailSubtitle.textContent = `${ticket.requestor} • ${ticket.category} • ${ticket.workflowStep}`;
+      if (!els.varDevice.value) els.varDevice.value = ticket.subcategory || ticket.summary;
+      if (!els.varMtn.value) els.varMtn.value = ticket.reference || '';
+      const info = [
+        ['Category', ticket.category], ['Subcategory', ticket.subcategory], ['Campus / Location', ticket.campus], ['Priority', ticket.priority],
+        ['Assigned', ticket.assignedTo], ['Universal Status', ticket.universalStatus], ['Next Action', ticket.nextAction || '—'], ['Reference', ticket.reference || '—']
+      ];
+      els.detailInfoGrid.innerHTML = info.map(([label, value]) => `<div class="info"><div class="info-label">${escapeHtml(label)}</div><div>${escapeHtml(value)}</div></div>`).join('');
+      const steps = categoryConfig[ticket.category]?.steps || [ticket.workflowStep];
+      els.timeline.innerHTML = steps.map(step => `<div class="step ${step === ticket.workflowStep ? 'active' : ''}">${escapeHtml(step)}</div>`).join('');
+      const currentIndex = steps.indexOf(ticket.workflowStep);
+      const actions = [ticket.workflowStep, ...steps.slice(currentIndex + 1, currentIndex + 4)].filter((v, i, arr) => arr.indexOf(v) === i);
+      els.actionsGrid.innerHTML = actions.map(step => `<button class="btn ${step === ticket.workflowStep ? '' : 'primary'}" type="button" data-step="${escapeHtml(step)}">${escapeHtml(step)}</button>`).join('');
+      els.actionsGrid.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => setWorkflowStep(ticket.id, btn.dataset.step)));
+      renderChecklist(ticket);
+      renderNotes(ticket);
+      renderBlurbPreview();
     }
 
     function renderChecklist(ticket) {
-      const config = categoryConfig[ticket.category]; const items = config?.checklist?.[ticket.workflowStep] || [];
-      if (!items.length) { els.checklist.innerHTML = '<div class="empty-state">No checklist for this step.</div>'; return; }
+      const items = categoryConfig[ticket.category]?.checklist?.[ticket.workflowStep] || [];
+      if (!items.length) {
+        els.checklist.innerHTML = '<div class="empty">No checklist for this step.</div>';
+        return;
+      }
       const state = ticket.checklistState?.[ticket.workflowStep] || [];
-      els.checklist.innerHTML = items.map((item, i) => `<label class="check-item"><input type="checkbox" data-index="${i}" ${state[i] ? 'checked' : ''} /><span>${escapeHtml(item)}</span></label>`).join('');
-      els.checklist.querySelectorAll('input[type="checkbox"]').forEach(box => box.addEventListener('change', () => {
-        const fresh = getSelectedTicket(); if (!fresh.checklistState) fresh.checklistState = {}; if (!fresh.checklistState[fresh.workflowStep]) fresh.checklistState[fresh.workflowStep] = new Array(items.length).fill(false); fresh.checklistState[fresh.workflowStep][Number(box.dataset.index)] = box.checked; fresh.updatedAt = new Date().toISOString(); persist();
+      els.checklist.innerHTML = items.map((item, i) => `<label class="check"><input type="checkbox" data-index="${i}" ${state[i] ? 'checked' : ''}><span>${escapeHtml(item)}</span></label>`).join('');
+      els.checklist.querySelectorAll('input').forEach(box => box.addEventListener('change', () => {
+        const fresh = getSelectedTicket();
+        if (!fresh.checklistState) fresh.checklistState = {};
+        if (!fresh.checklistState[fresh.workflowStep]) fresh.checklistState[fresh.workflowStep] = new Array(items.length).fill(false);
+        fresh.checklistState[fresh.workflowStep][Number(box.dataset.index)] = box.checked;
+        fresh.updatedAt = new Date().toISOString();
+        persist();
       }));
     }
 
     function renderNotes(ticket) {
-      if (!ticket.notes?.length) { els.notesList.innerHTML = '<div class="empty-state">No notes yet.</div>'; return; }
+      if (!ticket.notes || !ticket.notes.length) {
+        els.notesList.innerHTML = '<div class="empty">No notes yet.</div>';
+        return;
+      }
       const sorted = [...ticket.notes].sort((a, b) => new Date(b.at) - new Date(a.at));
-      els.notesList.innerHTML = sorted.map(note => `<div class="note"><div class="note-meta">${escapeHtml(formatDateTime(note.at))}</div><div>${escapeHtml(note.text)}</div></div>`).join('');
-    }
-
-    function renderBlurbPreview() {
-      const ticket = getSelectedTicket(); if (!ticket) { els.blurbPreview.textContent = 'No blurb available.'; return; }
-      const template = getBlurbTemplate(ticket.category, ticket.workflowStep); els.blurbPreview.textContent = fillTemplate(template, ticket);
+      els.notesList.innerHTML = sorted.map(note => `<div class="note"><div class="tiny">${escapeHtml(formatDateTime(note.at))}</div><div>${escapeHtml(note.text)}</div></div>`).join('');
     }
 
     function renderQuickSelect() {
@@ -585,10 +536,20 @@
     }
 
     function renderQuickSearchResults() {
-      const term = els.quickSearchInput.value.trim().toLowerCase(); const tickets = getFilteredTickets(term).slice(0, 6);
-      if (!tickets.length) { els.quickSearchResults.innerHTML = '<div class="empty-state">No matching tickets.</div>'; return; }
+      const term = els.quickSearchInput.value.trim().toLowerCase();
+      const tickets = getFilteredTickets(term).slice(0, 6);
+      if (!tickets.length) {
+        els.quickSearchResults.innerHTML = '<div class="empty">No matching tickets.</div>';
+        return;
+      }
       els.quickSearchResults.innerHTML = tickets.map(ticket => `<div class="ticket" data-id="${ticket.id}"><div class="ticket-id">${escapeHtml(ticket.id)}</div><div class="ticket-title">${escapeHtml(ticket.summary)}</div><div class="tiny">${escapeHtml(ticket.category)} • ${escapeHtml(ticket.workflowStep)}</div></div>`).join('');
-      els.quickSearchResults.querySelectorAll('.ticket').forEach(card => card.addEventListener('click', () => { appState.selectedTicketId = card.dataset.id; persist(); renderDetail(); renderQuickSelect(); showScreen('detail'); }));
+      els.quickSearchResults.querySelectorAll('.ticket').forEach(card => card.addEventListener('click', () => {
+        appState.selectedTicketId = card.dataset.id;
+        persist();
+        renderDetail();
+        renderQuickSelect();
+        showScreen('detail');
+      }));
     }
 
     function getFilteredTickets(searchTerm = '') {
@@ -599,104 +560,334 @@
       });
     }
 
-    function getSelectedTicket() { return appState.tickets.find(t => t.id === appState.selectedTicketId) || appState.tickets[0] || null; }
-
     function setWorkflowStep(ticketId, step) {
-      const ticket = appState.tickets.find(t => t.id === ticketId); if (!ticket) return; ticket.workflowStep = step; ticket.universalStatus = inferUniversalStatus(step); ticket.updatedAt = new Date().toISOString(); ticket.nextAction = inferNextAction(ticket.category, step); pushNote(ticket, `Workflow updated to: ${step}`); persist(); renderAll(); showToast(`Updated ${ticket.id} to ${step}`);
+      const ticket = appState.tickets.find(t => t.id === ticketId);
+      if (!ticket) return;
+      ticket.workflowStep = step;
+      ticket.universalStatus = inferUniversalStatus(step);
+      ticket.nextAction = inferNextAction(ticket.category, step);
+      ticket.updatedAt = new Date().toISOString();
+      pushNote(ticket, `Workflow updated to: ${step}`);
+      persist();
+      renderAll();
+      showToast(`Updated ${ticket.id} to ${step}`);
     }
 
     function inferUniversalStatus(step) {
-      const map = { 'Request': 'New', 'Pending Approval': 'Waiting', 'Approved': 'Active', 'Order Submitted': 'Active', 'Shipped': 'Waiting', 'Received': 'Active', 'Processing': 'Active', 'Ready for Pickup / Interoffice': 'Scheduled', 'Completed': 'Complete', 'Photo / Verification': 'Active', 'Printed': 'Active', 'Ready for Pickup': 'Scheduled', 'Needs Clarification': 'Waiting', 'Assigned': 'Active', 'Testing': 'Active', 'In Progress': 'Active', 'Waiting on User': 'Waiting', 'Scheduled': 'Scheduled', 'Resolved': 'Complete', 'Closed': 'Closed' };
+      const map = {
+        'Request': 'New', 'Pending Approval': 'Waiting', 'Approved': 'Active', 'Order Submitted': 'Active', 'Shipped': 'Waiting', 'Received': 'Active',
+        'Processing': 'Active', 'Ready for Pickup / Interoffice': 'Scheduled', 'Completed': 'Complete', 'Photo / Verification': 'Active', 'Printed': 'Active',
+        'Ready for Pickup': 'Scheduled', 'Needs Clarification': 'Waiting', 'Assigned': 'Active', 'Testing': 'Active', 'In Progress': 'Active',
+        'Waiting on User': 'Waiting', 'Scheduled': 'Scheduled', 'Resolved': 'Complete', 'Closed': 'Closed'
+      };
       return map[step] || 'Active';
     }
 
     function inferNextAction(category, step) {
-      const steps = categoryConfig[category]?.steps || []; const idx = steps.indexOf(step); if (idx >= 0 && idx < steps.length - 1) return `Next workflow step: ${steps[idx + 1]}`; return 'Review for final follow-up or closure';
+      const steps = categoryConfig[category]?.steps || [];
+      const idx = steps.indexOf(step);
+      return idx >= 0 && idx < steps.length - 1 ? `Next workflow step: ${steps[idx + 1]}` : 'Review for final follow-up or closure';
     }
 
-    function getBlurbTemplate(category, step) { return categoryConfig[category]?.blurbs?.[step] || 'Update completed for [DEVICE] on [DATE]. Reference: [MTN]. [BUDGET]'; }
+    function getBlurbTemplate(category, step) {
+      return categoryConfig[category]?.blurbs?.[step] || 'Update completed for [DEVICE] on [DATE]. Reference: [MTN]. [BUDGET]';
+    }
+
+    function renderBlurbPreview() {
+      const ticket = getSelectedTicket();
+      if (!ticket) return;
+      els.blurbPreview.textContent = fillTemplate(getBlurbTemplate(ticket.category, ticket.workflowStep), ticket);
+    }
 
     function fillTemplate(template, ticket) {
-      const date = els.varDate.value || new Date().toISOString().slice(0, 10); const dateText = formatDateOnly(date); const device = (els.varDevice.value || ticket.subcategory || ticket.summary || 'item').trim(); const mtn = (els.varMtn.value || ticket.reference || '').trim() || 'N/A'; const budget = (els.varBudget.value || '').trim() || 'None';
-      return template.replaceAll('[DATE]', dateText).replaceAll('[DEVICE]', device).replaceAll('[MTN]', mtn).replaceAll('[BUDGET]', budget);
+      const date = els.varDate.value || new Date().toISOString().slice(0, 10);
+      return template
+        .replaceAll('[DATE]', formatDateOnly(date))
+        .replaceAll('[DEVICE]', (els.varDevice.value || ticket.subcategory || ticket.summary || 'item').trim())
+        .replaceAll('[MTN]', (els.varMtn.value || ticket.reference || 'N/A').trim())
+        .replaceAll('[BUDGET]', (els.varBudget.value || 'None').trim());
     }
 
-    async function copyCurrentBlurb() { try { await navigator.clipboard.writeText(els.blurbPreview.textContent.trim()); showToast('Blurb copied'); } catch { showToast('Clipboard failed'); } }
+    async function copyCurrentBlurb() {
+      try {
+        await navigator.clipboard.writeText(els.blurbPreview.textContent.trim());
+        showToast('Blurb copied');
+      } catch {
+        showToast('Clipboard failed');
+      }
+    }
 
-    function addCurrentBlurbAsNote() { const ticket = getSelectedTicket(); if (!ticket) return; pushNote(ticket, els.blurbPreview.textContent.trim()); ticket.updatedAt = new Date().toISOString(); persist(); renderNotes(ticket); showToast('Blurb added to notes'); }
-    function saveManualNote() { const ticket = getSelectedTicket(); const text = els.noteInput.value.trim(); if (!ticket || !text) { showToast('Enter a note first'); return; } pushNote(ticket, text); ticket.updatedAt = new Date().toISOString(); els.noteInput.value = ''; persist(); renderNotes(ticket); showToast('Note saved'); }
-    function quickApplyStep(step) { const ticketId = els.quickTicketSelect.value || appState.selectedTicketId; if (!ticketId) { showToast('Select a ticket first'); return; } appState.selectedTicketId = ticketId; setWorkflowStep(ticketId, step); renderQuickSelect(); }
+    function addCurrentBlurbAsNote() {
+      const ticket = getSelectedTicket();
+      if (!ticket) return;
+      pushNote(ticket, els.blurbPreview.textContent.trim());
+      persist();
+      renderNotes(ticket);
+      showToast('Blurb added to notes');
+    }
+
+    function saveManualNote() {
+      const ticket = getSelectedTicket();
+      const text = els.noteInput.value.trim();
+      if (!ticket || !text) {
+        showToast('Enter a note first');
+        return;
+      }
+      pushNote(ticket, text);
+      ticket.updatedAt = new Date().toISOString();
+      els.noteInput.value = '';
+      persist();
+      renderNotes(ticket);
+      showToast('Note saved');
+    }
+
+    function quickApplyStep(step) {
+      const ticketId = els.quickTicketSelect.value || appState.selectedTicketId;
+      if (!ticketId) {
+        showToast('Select a ticket first');
+        return;
+      }
+      appState.selectedTicketId = ticketId;
+      setWorkflowStep(ticketId, step);
+    }
 
     function createTicket() {
-      const summary = els.newSummary.value.trim(); const requestor = els.newRequestor.value.trim(); const category = els.newCategory.value; if (!summary || !requestor || !category) { showToast('Summary, requestor, and category are required'); return; }
-      const ticket = { id: nextTicketId(), summary, requestor, category, subcategory: els.newSubcategory.value.trim() || 'General', campus: els.newCampus.value.trim() || '—', priority: els.newPriority.value, assignedTo: els.newAssigned.value.trim() || 'Unassigned', reference: els.newRef.value.trim(), universalStatus: 'New', workflowStep: categoryConfig[category]?.steps?.[0] || 'Request', nextAction: 'Review ticket and set workflow step', updatedAt: new Date().toISOString(), notes: [], checklistState: {} };
-      appState.tickets.unshift(ticket); appState.selectedTicketId = ticket.id; clearCreateForm(); persist(); renderAll(); showScreen('detail'); showToast(`Created ${ticket.id}`);
+      const summary = els.newSummary.value.trim();
+      const requestor = els.newRequestor.value.trim();
+      const category = els.newCategory.value;
+      if (!summary || !requestor || !category) {
+        showToast('Summary, requestor, and category are required');
+        return;
+      }
+      const ticket = {
+        id: nextTicketId(), summary, requestor, category,
+        subcategory: els.newSubcategory.value.trim() || 'General',
+        campus: els.newCampus.value.trim() || '—',
+        priority: els.newPriority.value,
+        assignedTo: els.newAssigned.value.trim() || 'Unassigned',
+        reference: els.newRef.value.trim(),
+        universalStatus: 'New',
+        workflowStep: categoryConfig[category]?.steps?.[0] || 'Request',
+        nextAction: 'Review ticket and set workflow step',
+        updatedAt: new Date().toISOString(),
+        notes: [], checklistState: {}
+      };
+      appState.tickets.unshift(ticket);
+      appState.selectedTicketId = ticket.id;
+      clearCreateForm();
+      persist();
+      renderAll();
+      showScreen('detail');
+      showToast(`Created ${ticket.id}`);
     }
 
     async function importTickets() {
       try {
-        let imported = []; const pasted = els.pasteImportInput.value.trim(); const file = els.importFileInput.files?.[0];
-        if (pasted) imported = normalizeImportedTickets(JSON.parse(pasted));
-        else if (file) {
+        let imported = [];
+        const pasted = els.pasteImportInput.value.trim();
+        const file = els.importFileInput.files && els.importFileInput.files[0];
+        if (pasted) {
+          imported = normalizeImportedTickets(JSON.parse(pasted));
+        } else if (file) {
           const text = await file.text();
-          if (file.name.toLowerCase().endsWith('.json')) imported = normalizeImportedTickets(JSON.parse(text));
-          else imported = normalizeImportedTickets(parseCsv(text));
-        } else { showToast('Choose a file or paste JSON'); return; }
-        if (!imported.length) { showToast('No usable tickets found'); return; }
-        const existingById = new Map(appState.tickets.map(ticket => [ticket.id, ticket])); imported.forEach(ticket => existingById.set(ticket.id, ticket));
-        appState.tickets = [...existingById.values()].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-        appState.selectedTicketId = imported[0].id; els.pasteImportInput.value = ''; els.importFileInput.value = ''; persist(); renderAll(); showScreen('dashboard'); showToast(`Imported ${imported.length} ticket(s)`);
-      } catch (error) { console.error(error); showToast('Import failed'); }
+          imported = file.name.toLowerCase().endsWith('.json') ? normalizeImportedTickets(JSON.parse(text)) : normalizeImportedTickets(parseCsv(text));
+        } else {
+          showToast('Choose a file or paste JSON');
+          return;
+        }
+        if (!imported.length) {
+          showToast('No usable tickets found');
+          return;
+        }
+        const existing = new Map(appState.tickets.map(t => [t.id, t]));
+        imported.forEach(t => existing.set(t.id, t));
+        appState.tickets = Array.from(existing.values()).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+        appState.selectedTicketId = imported[0].id;
+        els.importFileInput.value = '';
+        els.pasteImportInput.value = '';
+        persist();
+        renderAll();
+        showScreen('dashboard');
+        showToast(`Imported ${imported.length} ticket(s)`);
+      } catch (e) {
+        console.error(e);
+        showToast('Import failed');
+      }
     }
 
     function exportTickets() {
-      const blob = new Blob([JSON.stringify(appState.tickets, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'rp-ticket-assistant-export.json'; a.click(); URL.revokeObjectURL(url); showToast('Tickets exported');
+      const blob = new Blob([JSON.stringify(appState.tickets, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'rp-ticket-assistant-export.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Tickets exported');
     }
 
     function normalizeImportedTickets(input) {
-      const rows = Array.isArray(input) ? input : input?.tickets || [];
+      const rows = Array.isArray(input) ? input : (input && input.tickets) || [];
       return rows.map((row, index) => {
-        const category = pickCategory(row.category); const firstStep = categoryConfig[category]?.steps?.[0] || 'Request'; const workflowStep = validWorkflowStep(category, row.workflowStep) ? row.workflowStep : firstStep; const universalStatus = row.universalStatus || inferUniversalStatus(workflowStep); const id = String(row.id || row.number || row.ticketId || `RP-IMP-${Date.now()}-${index + 1}`).trim(); const summary = String(row.summary || row.briefDescription || row.title || 'Imported Ticket').trim(); const requestor = String(row.requestor || row.requester || row.caller || 'Unknown').trim();
-        return { id, summary, requestor, category, subcategory: String(row.subcategory || row.type || 'General').trim(), campus: String(row.campus || row.location || row.branch || '—').trim(), priority: String(row.priority || 'Normal').trim(), assignedTo: String(row.assignedTo || row.assignee || row.operator || row.technician || 'Unassigned').trim(), reference: String(row.reference || row.mtn || row.asset || '').trim(), universalStatus, workflowStep, nextAction: String(row.nextAction || inferNextAction(category, workflowStep)).trim(), updatedAt: row.updatedAt || row.modified || row.lastUpdated || new Date().toISOString(), notes: Array.isArray(row.notes) ? row.notes : [], checklistState: row.checklistState && typeof row.checklistState === 'object' ? row.checklistState : {} };
-      }).filter(ticket => ticket.id && ticket.summary);
+        const category = pickCategory(row.category);
+        const firstStep = categoryConfig[category]?.steps?.[0] || 'Request';
+        const workflowStep = validWorkflowStep(category, row.workflowStep) ? row.workflowStep : firstStep;
+        return {
+          id: String(row.id || row.number || row.ticketId || `RP-IMP-${Date.now()}-${index + 1}`).trim(),
+          summary: String(row.summary || row.briefDescription || row.title || 'Imported Ticket').trim(),
+          requestor: String(row.requestor || row.requester || row.caller || 'Unknown').trim(),
+          category,
+          subcategory: String(row.subcategory || row.type || 'General').trim(),
+          campus: String(row.campus || row.location || row.branch || '—').trim(),
+          priority: String(row.priority || 'Normal').trim(),
+          assignedTo: String(row.assignedTo || row.assignee || row.operator || row.technician || 'Unassigned').trim(),
+          reference: String(row.reference || row.mtn || row.asset || '').trim(),
+          universalStatus: String(row.universalStatus || inferUniversalStatus(workflowStep)).trim(),
+          workflowStep,
+          nextAction: String(row.nextAction || inferNextAction(category, workflowStep)).trim(),
+          updatedAt: row.updatedAt || row.modified || row.lastUpdated || new Date().toISOString(),
+          notes: Array.isArray(row.notes) ? row.notes : [],
+          checklistState: row.checklistState && typeof row.checklistState === 'object' ? row.checklistState : {}
+        };
+      }).filter(t => t.id && t.summary);
     }
 
     function parseCsv(text) {
-      const lines = text.split(/\r?\n/).filter(Boolean); if (!lines.length) return []; const headers = splitCsvLine(lines[0]).map(h => h.trim());
-      return lines.slice(1).map(line => { const values = splitCsvLine(line); const row = {}; headers.forEach((header, i) => { row[header] = values[i] ?? ''; }); return row; });
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      if (!lines.length) return [];
+      const headers = splitCsvLine(lines[0]).map(h => h.trim());
+      return lines.slice(1).map(line => {
+        const values = splitCsvLine(line);
+        const row = {};
+        headers.forEach((header, i) => { row[header] = values[i] ?? ''; });
+        return row;
+      });
     }
 
     function splitCsvLine(line) {
-      const result = []; let current = ''; let inQuotes = false;
+      const result = [];
+      let current = '';
+      let inQuotes = false;
       for (let i = 0; i < line.length; i++) {
-        const char = line[i]; const next = line[i + 1];
-        if (char === '"') { if (inQuotes && next === '"') { current += '"'; i++; } else { inQuotes = !inQuotes; } }
-        else if (char === ',' && !inQuotes) { result.push(current.trim()); current = ''; }
-        else current += char;
+        const char = line[i];
+        const next = line[i + 1];
+        if (char === '"') {
+          if (inQuotes && next === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
       }
-      result.push(current.trim()); return result;
+      result.push(current.trim());
+      return result;
     }
 
-    function pickCategory(value) { const raw = String(value || '').trim().toLowerCase(); if (!raw) return 'General Support'; const exact = Object.keys(categoryConfig).find(category => category.toLowerCase() === raw); if (exact) return exact; if (raw.includes('cell')) return 'Cellular Devices'; if (raw.includes('badge')) return 'ID Badges'; if (raw.includes('softdoc')) return 'SoftDocs'; return 'General Support'; }
-    function validWorkflowStep(category, step) { return categoryConfig[category]?.steps?.includes(step); }
-    function clearCreateForm() { els.newSummary.value = ''; els.newRequestor.value = ''; els.newSubcategory.value = ''; els.newCampus.value = ''; els.newPriority.value = 'Normal'; els.newAssigned.value = ''; els.newRef.value = ''; els.newCategory.selectedIndex = 0; }
-    function populateCategorySelects() { els.newCategory.innerHTML = Object.keys(categoryConfig).map(cat => `<option>${escapeHtml(cat)}</option>`).join(''); }
-    function pushNote(ticket, text) { if (!ticket.notes) ticket.notes = []; ticket.notes.push({ at: new Date().toISOString(), text }); }
-    function resetDemoData() { if (!confirm('Reset the app to demo data? This clears current local changes.')) return; appState = structuredClone(demoData); persist(); setDefaultVars(); renderAll(); showScreen('dashboard'); showToast('Demo data restored'); }
-    function showScreen(screen) { Object.entries(els.screens).forEach(([key, el]) => el.classList.toggle('active', key === screen)); els.navButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.screen === screen)); }
-    function showToast(message) { els.toast.textContent = message; els.toast.classList.add('show'); clearTimeout(showToast._timer); showToast._timer = setTimeout(() => els.toast.classList.remove('show'), 1800); }
-    function setDefaultVars() { els.varDate.value = new Date().toISOString().slice(0, 10); els.varDevice.value = ''; els.varMtn.value = ''; els.varBudget.value = ''; }
-    function loadState() { try { const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return structuredClone(demoData); const parsed = JSON.parse(raw); return parsed?.tickets?.length ? parsed : structuredClone(demoData); } catch { return structuredClone(demoData); } }
-    function persist() { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); }
-    function nextTicketId() { const numbers = appState.tickets.map(t => Number(String(t.id).replace(/[^0-9]/g, ''))).filter(n => !Number.isNaN(n)); const next = (numbers.length ? Math.max(...numbers) : 1000) + 1; return `RP-${next}`; }
-    function formatDateOnly(value) { const date = new Date(`${value}T12:00:00`); return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }); }
-    function formatDateTime(value) { const date = new Date(value); return date.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); }
-    function escapeHtml(str) { return String(str ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;'); }
-    function cssSafe(str) { return String(str).replace(/[^a-zA-Z0-9_-]/g, '-'); }
+    function pickCategory(value) {
+      const raw = String(value || '').trim().toLowerCase();
+      if (!raw) return 'General Support';
+      const exact = Object.keys(categoryConfig).find(category => category.toLowerCase() === raw);
+      if (exact) return exact;
+      if (raw.includes('cell')) return 'Cellular Devices';
+      if (raw.includes('badge')) return 'ID Badges';
+      if (raw.includes('softdoc')) return 'SoftDocs';
+      return 'General Support';
+    }
+
+    function validWorkflowStep(category, step) {
+      return !!(categoryConfig[category] && categoryConfig[category].steps.includes(step));
+    }
+
+    function populateCategorySelects() {
+      els.newCategory.innerHTML = Object.keys(categoryConfig).map(cat => `<option>${escapeHtml(cat)}</option>`).join('');
+    }
+
+    function clearCreateForm() {
+      els.newSummary.value = '';
+      els.newRequestor.value = '';
+      els.newSubcategory.value = '';
+      els.newCampus.value = '';
+      els.newPriority.value = 'Normal';
+      els.newAssigned.value = '';
+      els.newRef.value = '';
+      els.newCategory.selectedIndex = 0;
+    }
+
+    function pushNote(ticket, text) {
+      if (!ticket.notes) ticket.notes = [];
+      ticket.notes.push({ at: new Date().toISOString(), text });
+    }
+
+    function setDefaultVars() {
+      els.varDate.value = new Date().toISOString().slice(0, 10);
+      els.varDevice.value = '';
+      els.varMtn.value = '';
+      els.varBudget.value = '';
+    }
+
+    function resetDemoData() {
+      if (!confirm('Reset the app to demo data? This clears current local changes.')) return;
+      appState = structuredClone(demoData);
+      persist();
+      setDefaultVars();
+      renderAll();
+      showScreen('dashboard');
+      showToast('Demo data restored');
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return structuredClone(demoData);
+        const parsed = JSON.parse(raw);
+        return parsed && parsed.tickets && parsed.tickets.length ? parsed : structuredClone(demoData);
+      } catch {
+        return structuredClone(demoData);
+      }
+    }
+
+    function persist() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    }
+
+    function nextTicketId() {
+      const nums = appState.tickets.map(t => Number(String(t.id).replace(/[^0-9]/g, ''))).filter(n => !Number.isNaN(n));
+      return `RP-${(nums.length ? Math.max(...nums) : 1000) + 1}`;
+    }
+
+    function formatDateOnly(value) {
+      return new Date(`${value}T12:00:00`).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function formatDateTime(value) {
+      return new Date(value).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    }
+
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add('show');
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => els.toast.classList.remove('show'), 1800);
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js').catch((error) => console.error('Service worker registration failed:', error));
+        navigator.serviceWorker.register('./service-worker.js').catch(err => console.error('Service worker registration failed:', err));
       });
     }
   </script>
