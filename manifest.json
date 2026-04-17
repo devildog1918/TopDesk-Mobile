@@ -1,28 +1,23 @@
 {
-  "name": "RP Ticket Assistant",
-  "short_name": "RP Assistant",
-  "description": "Personal workflow and status tool for managing tickets across multiple categories.",
-  "id": "./",
+  "name": "RP Blurb Library",
+  "short_name": "Blurb Library",
+  "description": "Search, manage, and copy TOPdesk blurbs from a local installable PWA.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#8b1e2d",
   "orientation": "portrait-primary",
-  "background_color": "#0b1220",
-  "theme_color": "#0f172a",
-  "categories": ["productivity", "utilities", "business"],
-  "lang": "en-US",
   "icons": [
     {
       "src": "./icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "./icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
